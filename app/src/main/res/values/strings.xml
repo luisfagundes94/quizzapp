@@ -4,4 +4,6 @@
     <string name="img_desc">Background Image</string>
     <string name="txt_btn_see_final_result">VER RESULTADO</string>
     <string name="txt_score">Score</string>
+    <string name="btn_play_again">Jogar novamente</string>
+    <string name="txt_right_answer">Resposta correta!</string>
 </resources>

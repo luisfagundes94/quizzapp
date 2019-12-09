@@ -24,7 +24,15 @@ class MainActivity : AppCompatActivity() {
 
         init()
         configureRadioGroup()
-        onBtnNextClicked()
+
+        btn_next.setOnClickListener {
+            updateImage()
+            updateQuestion()
+            updateChoices()
+            updateAnswer()
+            questionNumber++
+            updateUiOnBtnClicked()
+        }
     }
 
     private fun showWrongAnswerMsg(correctAnswer: String) {
@@ -34,8 +42,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCorrectAnswerMsg() {
-        txt_result.setTextColor(Color.GREEN)
-        txt_result.text = "Resposta correta!"
+        // COR VERDE
+        txt_result.setTextColor(Color.rgb(10, 180, 10))
+        txt_result.text = getString(R.string.txt_right_answer)
     }
 
     private fun init() {
@@ -49,13 +58,8 @@ class MainActivity : AppCompatActivity() {
         questionNumber++
     }
 
-    private fun playCorrectAnswerRingtone() {
-        correctAnswerRing.start()
-    }
-
-    private fun playWrongAnswerRingtone() {
-        wrongAnswerRing.start()
-    }
+    private fun playCorrectAnswerRingtone() = correctAnswerRing.start()
+    private fun playWrongAnswerRingtone() = wrongAnswerRing.start()
 
     private fun disableAllRadioButtons() {
         for (i in 0 until radioGroup.childCount) {
@@ -69,14 +73,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateRadioGroup() {
-        radioGroup.clearCheck()
-    }
+    private fun updateRadioGroup() = radioGroup.clearCheck()
 
     private fun enableNextButton() {
         btn_next.isEnabled = true
     }
-
 
     private fun configureRadioGroup() {
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -124,17 +125,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun onBtnNextClicked() {
-        btn_next.setOnClickListener {
-            updateImage()
-            updateQuestion()
-            updateChoices()
-            updateAnswer()
-            questionNumber++
-            updateUiOnBtnClicked()
-        }
-    }
-
     private fun updateUiOnRadioButtonClicked() {
         disableAllRadioButtons()
         enableNextButton()
@@ -167,9 +157,7 @@ class MainActivity : AppCompatActivity() {
         answer = questionLibrary.getCorrectAnswer(questionNumber)
     }
 
-    private fun updateImage() {
-        img.setImageResource(questionLibrary.getImage(questionNumber))
-    }
+    private fun updateImage() = img.setImageResource(questionLibrary.getImage(questionNumber))
 
     private fun goToResultActivity() {
         val intent = Intent(this, ResultActivity::class.java)
