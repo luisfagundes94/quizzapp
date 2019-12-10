@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             validateUserChoice()
             updateUi()
             questionNumber++
-            updateUiOnBtnClicked()
+            updateTextResult()
         }
     }
 
@@ -89,8 +89,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUiOnBtnClicked() {
-        txt_result.text = ""
+    private fun updateTextResult() {
+        val resultText = "Score: $score/5"
+        txt_result.text = resultText
     }
 
     private fun updateQuestion() {
